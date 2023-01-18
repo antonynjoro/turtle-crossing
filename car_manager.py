@@ -14,7 +14,7 @@ class CarManager:
         for car in self.cars:
             car.forward(STARTING_MOVE_DISTANCE)
 
-    def create_cars(self):
+    def create_car(self):
         # create car
         car = Turtle('square')
         car.penup()
@@ -31,13 +31,18 @@ class CarManager:
         self.cars = [car for car in self.cars if -400 < car.xcor() <= 600]
 
 
-    def turtle_hit(self, turtle_coordinates:tuple):
+    def turtle_hit(self, turtle_object):
         # loops through all the cars
         for car in self.cars:
 
             # print(f"Distance: {car.position()}")
             # if car is very close to the turtle
-            if car.distance(turtle_coordinates) < 20:
+            if car.distance(turtle_object) < 20:
                 return True
         else:
             return False
+
+    def new_game(self):
+        for car in self.cars:
+            car.hideturtle()
+        self.cars = []
